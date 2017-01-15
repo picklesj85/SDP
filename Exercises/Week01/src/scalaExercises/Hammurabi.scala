@@ -43,6 +43,7 @@ object Hammurabi {
     var pricePerAcre = 19 // each acre costs this many bushels
     var plagueDeaths = 0
     var year = 1
+
     printIntroductoryMessage()
 
     for (year <- 1 to 10) {
@@ -73,6 +74,9 @@ object Hammurabi {
         bushelsInStorage += acresToSell * pricePerAcre
 
       }
+
+      var grainToFeed = askHowMuchGrainToFeedThePeople(bushelsInStorage)
+      bushelsInStorage -= grainToFeed
     }
   }
 
@@ -104,5 +108,16 @@ object Hammurabi {
     }
     acresToSell
   }
+
+  def askHowMuchGrainToFeedThePeople(bushels: Int): Int = {
+    var grainToFeed = readInt("How much grain do you wish to feed the people with?")
+    while (grainToFeed < 0 || grainToFeed > bushels) {
+      println("O Great Hammurabi, we have but " + bushels + " bushels of grain!")
+      grainToFeed = readInt("How much grain do you wish to feed the people with?")
+    }
+    grainToFeed
+  }
+
+
 
 }

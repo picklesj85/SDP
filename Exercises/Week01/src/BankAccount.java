@@ -1,7 +1,7 @@
 /**
  * Created by JPickles on 13/01/2017.
  */
-class BankAccount {
+public class BankAccount {
     private float balance;
     public void deposit(float amount) {
         this.balance += amount;

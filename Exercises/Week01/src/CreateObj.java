@@ -39,8 +39,7 @@ public class CreateObj {
             Constructor[] constructors = reflectClass.getConstructors();
             Constructor constructor = null;
             for(Constructor c : constructors) {
-                System.out.println(c.getTypeParameters().length);
-                if (c.getTypeParameters().length == conArgs.size()) {
+                if (c.getParameterCount() == conArgs.size()) {
                     constructor = c;
                     break;
                 }

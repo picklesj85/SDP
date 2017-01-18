@@ -23,7 +23,7 @@ public class ReflectInterface {
             reflectClass = Class.forName(clName);
             System.out.printf("%s interface %s {\n\n", Modifier.toString(reflectClass.getModifiers()), reflectClass.getName());
 
-            Field[] fields = reflectClass.getFields();
+            Field[] fields = reflectClass.getDeclaredFields();
             Method[] methods = reflectClass.getDeclaredMethods();
             Constructor[] constructors = reflectClass.getConstructors();
             int modifiers = reflectClass.getModifiers();

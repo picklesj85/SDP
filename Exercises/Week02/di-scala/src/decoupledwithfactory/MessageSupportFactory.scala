@@ -20,7 +20,7 @@ class MessageSupportFactory private() {
 
   props = new Properties
   try {
-    props.load(new FileInputStream("di-scala/src/decoupledwithfactory/bean.properties"))
+    props.load(new FileInputStream("Week02/di-scala/src/decoupledwithfactory/bean.properties"))
     val rendererClass: String = props.getProperty("renderer.class")
     val providerClass: String = props.getProperty("provider.class")
     renderer = Class.forName(rendererClass).newInstance.asInstanceOf[MessageRenderer]

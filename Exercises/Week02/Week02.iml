@@ -6,6 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/alarmsystem/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/alarmsystem/anotherscr" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/di/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/di-scala/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/springdi/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/springdi_scala/src" isTestSource="false" />
     </content>
     <orderEntry type="library" name="scala-sdk-2.12.1" level="project" />
     <orderEntry type="inheritedJdk" />

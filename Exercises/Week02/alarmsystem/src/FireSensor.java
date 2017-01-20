@@ -1,7 +1,8 @@
 public class FireSensor implements Sensor {
+
   @Override
   public boolean isTriggered() {
-    return false;
+    return (Math.random() < 0.05);
   }
 
   @Override

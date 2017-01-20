@@ -42,7 +42,6 @@ public class FireSensorTest {
     double batteryDrain = sensor.getBatteryPercentage();
     assertEquals(100.0, batteryDrain, 0.01);
     for (int i = 9; i >= 0; i--) {
-
       sensor.isTriggered();
       batteryDrain = sensor.getBatteryPercentage();
       assertEquals((i * 10.0), batteryDrain, 0.01);

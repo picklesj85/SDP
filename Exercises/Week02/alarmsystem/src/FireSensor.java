@@ -20,7 +20,7 @@ public class FireSensor implements Sensor {
 
   @Override
   public String getSensorType() {
-    return null;
+    return this.getClass().getName();
   }
 
   @Override

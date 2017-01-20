@@ -30,10 +30,11 @@ public class FireSensorTest {
   }
 
   @Test
-  public void testThatGetSensorTypeReturnsNull() {
+  public void testThatGetSensorTypeReturnsType() {
     FireSensor sensor = new FireSensor("Bedroom");
     String sensorType = sensor.getSensorType();
-    assertEquals(null, sensorType);
+    System.out.println(sensorType);
+    assertEquals("FireSensor", sensorType);
   }
 
   @Test

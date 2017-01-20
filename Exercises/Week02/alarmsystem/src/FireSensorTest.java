@@ -7,7 +7,7 @@ public class FireSensorTest {
 
   @Test
   public void testThatIsTriggeredReturnsFalseAroundNinetyFivePerCentOfTheTime() {
-    FireSensor sensor = new FireSensor();
+    FireSensor sensor = new FireSensor("bedroom");
     int falseCount = 0;
     int trueCount = 0;
     for (int i = 0; i < 100; i++) {
@@ -23,22 +23,22 @@ public class FireSensorTest {
 
 
   @Test
-  public void testThatGetLocationReturnsNull() {
-    FireSensor sensor = new FireSensor();
+  public void testThatGetLocationReturnsLocation() {
+    FireSensor sensor = new FireSensor("Bedroom");
     String location = sensor.getLocation();
-    assertEquals(null, location);
+    assertEquals("Bedroom", location);
   }
 
   @Test
   public void testThatGetSensorTypeReturnsNull() {
-    FireSensor sensor = new FireSensor();
+    FireSensor sensor = new FireSensor("Bedroom");
     String sensorType = sensor.getSensorType();
     assertEquals(null, sensorType);
   }
 
   @Test
   public void testThatGetBatteryPercentageReturnsNegativeOne() {
-    FireSensor sensor = new FireSensor();
+    FireSensor sensor = new FireSensor("Bedroom");
     double batteryPercentage = sensor.getBatteryPercentage();
     assertEquals(-1.0, batteryPercentage, 0.01);
   }

@@ -37,7 +37,7 @@ public class FireSensorTest {
   }
 
   @Test
-  public void testThatGetBatteryPercentageDrainsCorrectly() {
+  public void testBatteryPercentageDrainsCorrectly() {
     FireSensor sensor = new FireSensor("Bedroom");
     double batteryDrain = sensor.getBatteryPercentage();
     assertEquals(100.0, batteryDrain, 0.01);

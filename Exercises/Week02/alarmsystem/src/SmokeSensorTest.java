@@ -36,7 +36,7 @@ public class SmokeSensorTest {
   }
 
   @Test
-  public void testThatGetBatteryPercentageReturnsNegativeOne() {
+  public void testBatteryPercentageDrainsCorrectly() {
     SmokeSensor sensor = new SmokeSensor("Kitchen");
     double batteryDrain = sensor.getBatteryPercentage();
     assertEquals(100.0, batteryDrain, 0.01);

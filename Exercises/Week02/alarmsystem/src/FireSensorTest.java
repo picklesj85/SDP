@@ -33,7 +33,6 @@ public class FireSensorTest {
   public void testThatGetSensorTypeReturnsType() {
     FireSensor sensor = new FireSensor("Bedroom");
     String sensorType = sensor.getSensorType();
-    System.out.println(sensorType);
     assertEquals("FireSensor", sensorType);
   }
 

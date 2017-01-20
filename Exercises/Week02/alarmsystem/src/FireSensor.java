@@ -5,11 +5,12 @@ public class FireSensor implements Sensor {
 
   public FireSensor(String location) {
     this.location = location;
-    //batteryPercentage = 100;
+    batteryPercentage = 100;
   }
 
   @Override
   public boolean isTriggered() {
+    batteryPercentage = batteryPercentage - 10;
     return (Math.random() < 0.05);
   }
 
@@ -25,6 +26,6 @@ public class FireSensor implements Sensor {
 
   @Override
   public double getBatteryPercentage() {
-    return -1;
+    return batteryPercentage;
   }
 }

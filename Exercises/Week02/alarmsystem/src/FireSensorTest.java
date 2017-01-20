@@ -38,9 +38,15 @@ public class FireSensorTest {
   }
 
   @Test
-  public void testThatGetBatteryPercentageReturnsNegativeOne() {
+  public void testThatGetBatteryPercentageDrainsCorrectly() {
     FireSensor sensor = new FireSensor("Bedroom");
-    double batteryPercentage = sensor.getBatteryPercentage();
-    assertEquals(-1.0, batteryPercentage, 0.01);
+    double batteryDrain = sensor.getBatteryPercentage();
+    assertEquals(100.0, batteryDrain, 0.01);
+    for (int i = 9; i >= 0; i--) {
+
+      sensor.isTriggered();
+      batteryDrain = sensor.getBatteryPercentage();
+      assertEquals((i * 10.0), batteryDrain, 0.01);
+    }
   }
 }

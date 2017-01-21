@@ -1,4 +1,4 @@
-public class FireSensor implements Sensor {
+public class FireSensor implements BatteryPoweredSensor {
 
   private String location;
   private double batteryPercentage;

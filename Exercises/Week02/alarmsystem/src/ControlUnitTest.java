@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -5,12 +6,21 @@ import java.util.List;
 
 public class ControlUnitTest {
 
-    @Test
-    public void testPollSensors() {
+    private ControlUnit cu;
+
+    @Before
+    public void setUp() {
         List<Sensor> sensors = new ArrayList<>();
         sensors.add(new FireSensor("Kitchen"));
         sensors.add(new SmokeSensor("Bedroom"));
-        ControlUnit cu = new ControlUnit(sensors);
-        cu.pollSensors();
+        cu = new ControlUnit(sensors);
     }
+    @Test
+    public void testPollSensorsRepeatedly() {
+        for (int i = 0; i < 100; i++) {
+            cu.pollSensors();
+            System.out.println();
+        }
+    }
+
 }

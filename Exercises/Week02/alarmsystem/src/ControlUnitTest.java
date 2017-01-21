@@ -16,9 +16,9 @@ public class ControlUnitTest {
         cu = new ControlUnit(sensors);
     }
     @Test
-    public void testPollSensorsRepeatedly() {
+    public void testPollHazardSensorsRepeatedly() {
         for (int i = 0; i < 100; i++) {
-            cu.pollSensors();
+            cu.pollHazardSensors();
             System.out.println();
         }
     }

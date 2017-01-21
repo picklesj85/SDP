@@ -19,7 +19,8 @@ public class App {
       System.out.println("Type \"poll\" to poll all sensors once or \"exit\" to exit");
       input = scanner.nextLine();
       if (input.equals(POLL)) {
-        controlUnit.pollSensors();
+        controlUnit.pollHazardSensors();
+        controlUnit.pollSecuritySensors();
       }
     }
   }

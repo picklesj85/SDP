@@ -8,27 +8,13 @@ public class ControlUnit {
     this.sensors = sensors;
   }
 
-  public void pollHazardSensors() {
+  public void pollSensors() {
     for (Sensor sensor : sensors) {
-      if (sensor instanceof HazardSensor) {
-        if (((HazardSensor)sensor).isHazardTriggered()) {
+        if (sensor.isTriggered()) {
           System.out.println("A " + sensor.getSensorType() + " sensor was triggered at " + sensor.getLocation());
         } else {
-          System.out.println("Polled " + sensor.getSensorType() + " at " + sensor.getLocation() + " successfully");
+          System.out.println("Polled " + sensor.getSensorType() + " sensor at " + sensor.getLocation() + " successfully");
         }
-      }
-    }
-  }
-
-  public void pollSecuritySensors() {
-    for (Sensor sensor : sensors) {
-      if (sensor instanceof SecuritySensor) {
-        if (((SecuritySensor)sensor).isSecurityTriggered()) {
-          System.out.println("A " + sensor.getSensorType() + " sensor was triggered at " + sensor.getLocation());
-        } else {
-          System.out.println("Polled " + sensor.getSensorType() + " at " + sensor.getLocation() + " successfully");
-        }
-      }
     }
   }
 }

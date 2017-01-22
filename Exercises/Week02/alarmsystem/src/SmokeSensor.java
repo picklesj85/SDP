@@ -1,4 +1,4 @@
-public class SmokeSensor implements HazardSensor, BatteryPoweredSensor {
+public class SmokeSensor implements BatteryPoweredSensor {
 
   private String location;
   private double batteryPercentage;
@@ -9,7 +9,7 @@ public class SmokeSensor implements HazardSensor, BatteryPoweredSensor {
   }
 
   @Override
-  public boolean isHazardTriggered() {
+  public boolean isTriggered() {
     batteryPercentage -= 20;
     return (Math.random() < 0.1);
   }
@@ -17,11 +17,6 @@ public class SmokeSensor implements HazardSensor, BatteryPoweredSensor {
   @Override
   public String getLocation() {
     return location;
-  }
-
-  @Override
-  public String getSensorType() {
-    return this.getClass().getName();
   }
 
   @Override

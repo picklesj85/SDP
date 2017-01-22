@@ -1,7 +1,7 @@
 /**
  * Created by James Pickles on 21/01/2017.
  */
-public class MotionSensor implements SecuritySensor {
+public class MotionSensor implements Sensor {
 
     private String location;
 
@@ -10,7 +10,7 @@ public class MotionSensor implements SecuritySensor {
     }
 
     @Override
-    public boolean isSecurityTriggered() {
+    public boolean isTriggered() {
         return false;
     }
 
@@ -21,6 +21,6 @@ public class MotionSensor implements SecuritySensor {
 
     @Override
     public String getSensorType() {
-        return this.getClass().getName();
+        return "Security";
     }
 }

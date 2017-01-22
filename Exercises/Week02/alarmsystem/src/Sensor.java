@@ -1,7 +1,11 @@
 public interface Sensor {
 
+  boolean isTriggered();
+
   String getLocation();
 
-  String getSensorType();
+  default String getSensorType() {
+    return "Hazard";
+  }
 
 }

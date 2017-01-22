@@ -11,7 +11,7 @@ public class SmokeSensorTest {
     int falseCount = 0;
     int trueCount = 0;
     for (int i = 0; i < 100; i++) {
-      if (sensor.isHazardTriggered()) {
+      if (sensor.isTriggered()) {
         trueCount++;
       } else {
         falseCount++;
@@ -32,7 +32,7 @@ public class SmokeSensorTest {
   public void testThatGetSensorTypeReturnsType() {
     SmokeSensor sensor = new SmokeSensor("Kitchen");
     String sensorType = sensor.getSensorType();
-    assertEquals("SmokeSensor", sensorType);
+    assertEquals("Hazard", sensorType);
   }
 
   @Test
@@ -41,7 +41,7 @@ public class SmokeSensorTest {
     double batteryDrain = sensor.getBatteryPercentage();
     assertEquals(100.0, batteryDrain, 0.01);
     for (int i = 8; i >= 0; i -= 2) {
-      sensor.isHazardTriggered();
+      sensor.isTriggered();
       batteryDrain = sensor.getBatteryPercentage();
       assertEquals((i * 10.0), batteryDrain, 0.01);
     }

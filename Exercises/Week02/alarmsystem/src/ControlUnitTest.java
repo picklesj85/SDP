@@ -15,12 +15,12 @@ public class ControlUnitTest {
         sensors.add(new SmokeSensor("Bedroom"));
         cu = new ControlUnit(sensors);
     }
+
     @Test
     public void testPollHazardSensorsRepeatedly() {
         for (int i = 0; i < 100; i++) {
-            cu.pollHazardSensors();
+            cu.pollSensors();
             System.out.println();
         }
     }
-
 }

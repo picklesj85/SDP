@@ -51,8 +51,8 @@ object ScalaBasics {
    * @return the minimum integer in the array
    */
   def minWhile(r: Array[Int]): Int = {
-    var count = 0
-    var min = Int.MaxValue
+    var count = 1
+    var min = r(0)
     while (count < r.length) {
       if (r(count) < min) min = r(count)
       count += 1

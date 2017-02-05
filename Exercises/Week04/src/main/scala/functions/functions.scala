@@ -23,7 +23,7 @@ object Funcs {
     *
     * @param ls : List[A] the list to be changed
     * @param a  : A the value that will replace the head of ls
-    * @return a list whose head is `a' and whose tail is all but the first
+    * @return a list whose head is 'a' and whose tail is all but the first
     *         element of ls.
     **/
   def setHead[A](ls: List[A], a: A): List[A] = ls match {
@@ -136,7 +136,11 @@ object Funcs {
     * @param f  : A => Boolean the predicate
     * @return the filtered list.
     */
-  def filter[A](ls: List[A])(f: A => Boolean): List[A] = ???
+  def filter[A](ls: List[A])(f: A => Boolean): List[A] = ls match {
+    case Nil => List()
+    case h :: t if f(h) => h :: filter(t)(f)
+    case _ :: t => filter(t)(f)
+  }
 
   /**
     * flatMap is very similar to map. However, the function returns a List,
@@ -147,7 +151,10 @@ object Funcs {
     * @return a List[B] containing the flattened results of applying f to all
     *         elements of ls.
     */
-  def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = ???
+  def flatMap[A, B](ls: List[A])(f: A => List[B]): List[B] = ls match {
+    case Nil => List()
+    case h :: t => f(h) ::: flatMap(t)(f)
+  }
 
   // COMBINING FUNCTIONS
 

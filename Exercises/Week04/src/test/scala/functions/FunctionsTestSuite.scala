@@ -39,6 +39,17 @@ class FunctionsTestSuite extends FunSuite {
     assert(init(List("A", "B", "C", "D")) == List("A", "B", "C"))
   }
 
+  test("init throws IllegalArgumentException on empty list") {
+    assertThrows[IllegalArgumentException] {
+      init(List())
+    }
+  }
+
+  test("init returns empty list on list of one element") {
+    assert(init(List("0")) == List())
+  }
+
+
   // Folding
   test("foldLeft computes the correct value") {
     assert(foldLeft(List("H", "e", "l", "l", "o"), "")(_ + _) == "Hello")

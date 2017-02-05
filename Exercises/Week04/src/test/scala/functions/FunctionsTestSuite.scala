@@ -59,20 +59,40 @@ class FunctionsTestSuite extends FunSuite {
     assert(foldLeft(List(1, 2, 3, 4, 5), 0)(_ + _) == 15)
   }
 
+  test("foldLeft produces correct result when applied on empty list") {
+    assert(foldLeft(List[Int](), 0)(_ + _) == 0)
+  }
+
   test("sum produces the correct sum") {
     assert(sum(List(1.0, 2.0, 3.0, -3.0, -2.0, -1.0)) == 0.0)
+  }
+
+  test("sum on empty list") {
+    assert(sum(List()) == 0.0)
   }
 
   test("product produces the correct product") {
     assert(product(List(1.0, 2.0, 3.0, 4.0, 5.0)) == 120.0)
   }
 
+  test("product on empty list") {
+    assert(product(List()) == 0.0)
+  }
+
   test("length calculates the length") {
     assert(length("Hello".toList) == 5)
   }
 
+  test("length on empty list") {
+    assert(length(List()) == 0)
+  }
+
   test("reverse reverses the list") {
     assert(reverse("Hello".toList) == "olleH".toList)
+  }
+
+  test("reverse on empty list") {
+    assert(reverse(List()) == List())
   }
 
   test("flatten flattens the nested list") {

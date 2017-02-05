@@ -94,8 +94,9 @@ object Funcs {
     foldLeft(ls, 0.0)(_ + _)
   }
 
-  def product(ls: List[Double]): Double = {
-    foldLeft(ls, 1.0)(_ * _)
+  def product(ls: List[Double]): Double = ls match {
+    case Nil => 0.0
+    case _ => foldLeft(ls, 1.0)(_ * _)
   }
 
   def length[A](ls: List[A]): Int = {

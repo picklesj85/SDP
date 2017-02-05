@@ -9,6 +9,12 @@ class FunctionsTestSuite extends FunSuite {
     assert(tail(List(1, 2, 3, 4)) == List(2, 3, 4))
   }
 
+  test("Tail throws IllegalArgumentException on empty list") {
+    assertThrows[IllegalArgumentException] {
+      tail(List())
+    }
+  }
+
   test("setHead changes the first element of the list") {
     assert(setHead(List("A", "B", "C"), "0") == List("0", "B", "C"))
   }
@@ -19,6 +25,14 @@ class FunctionsTestSuite extends FunSuite {
 
   test("drop removes N elements from the front of the list") {
     assert(drop(List(1, 2, 3), 2) == List(3))
+  }
+
+  test("drop returns empty list when n is bigger than list size") {
+    assert(drop(List(1, 2, 3), 4) == List())
+  }
+
+  test("drop returns empty list when n equals list size") {
+    assert(drop(List(1, 2), 2) == List())
   }
 
   test("init removes the last element") {

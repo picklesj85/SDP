@@ -55,6 +55,10 @@ class FunctionsTestSuite extends FunSuite {
     assert(foldLeft(List("H", "e", "l", "l", "o"), "")(_ + _) == "Hello")
   }
 
+  test("foldLeft adds int") {
+    assert(foldLeft(List(1, 2, 3, 4, 5), 0)(_ + _) == 15)
+  }
+
   test("sum produces the correct sum") {
     assert(sum(List(1.0, 2.0, 3.0, -3.0, -2.0, -1.0)) == 0.0)
   }

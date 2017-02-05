@@ -106,7 +106,9 @@ object Funcs {
     foldLeft(ls, List[A]())((a: List[A], b: A) => b :: a)
   }
 
-  def flatten[A](ls: List[List[A]]): List[A] = ???
+  def flatten[A](ls: List[List[A]]): List[A] = {
+    foldLeft(ls, List[A]())((a: List[A], b: List[A]) => a ::: b)
+  }
 
   // MAP AND FILTER
 
@@ -119,7 +121,10 @@ object Funcs {
     * @param f  : A => B the function to be applied to each element of the input.
     * @return the resulting list from applying f to each element of ls.
     */
-  def map[A, B](ls: List[A])(f: A => B): List[B] = ???
+  def map[A, B](ls: List[A])(f: A => B): List[B] = ls match {
+    case Nil => List()
+    case h :: t => f(h) :: map(t)(f)
+  }
 
   /**
     * filter removes all elements from a list for which a given predicate

@@ -102,7 +102,9 @@ object Funcs {
     foldLeft(ls, 0)((a: Int, b: A) => 1 + a)
   }
 
-  def reverse[A](ls: List[A]): List[A] = ???
+  def reverse[A](ls: List[A]): List[A] = {
+    foldLeft(ls, List[A]())((a: List[A], b: A) => b :: a)
+  }
 
   def flatten[A](ls: List[List[A]]): List[A] = ???
 

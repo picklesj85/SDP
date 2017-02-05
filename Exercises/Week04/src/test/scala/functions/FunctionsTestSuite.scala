@@ -13,6 +13,10 @@ class FunctionsTestSuite extends FunSuite {
     assert(setHead(List("A", "B", "C"), "0") == List("0", "B", "C"))
   }
 
+  test("setHead on empty list creates single element list") {
+    assert(setHead(List(), "0") == List("0"))
+  }
+
   test("drop removes N elements from the front of the list") {
     assert(drop(List(1, 2, 3), 2) == List(3))
   }

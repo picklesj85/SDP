@@ -122,10 +122,8 @@ object Funcs {
     * @param f  : A => B the function to be applied to each element of the input.
     * @return the resulting list from applying f to each element of ls.
     */
-  def map[A, B](ls: List[A])(f: A => B): List[B] = ls match {
-    case Nil => List()
-    case h :: t => f(h) :: map(t)(f)
-  }
+
+
 
   /**
     * filter removes all elements from a list for which a given predicate
@@ -168,7 +166,9 @@ object Funcs {
     *           length is greater than 0.
     * @return the average value of the largest values in the pairs.
     */
-  def maxAverage(ls: List[(Double, Double)]): Double = ???
+  def maxAverage(ls: List[(Double, Double)]): Double = {
+    val max = ls.map(x => x._1 > x._2)
+  }
 
   /**
     * variance takes a List[Double] and calculates the squared distance

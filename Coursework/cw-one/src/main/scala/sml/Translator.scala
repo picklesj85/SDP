@@ -28,6 +28,8 @@ class Translator(fileName: String) {
             program = program :+ AddInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
           case LIN =>
             program = program :+ LinInstruction(fields(0), fields(2).toInt, fields(3).toInt)
+          case SUB =>
+            program = program :+ SubInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
           case x =>
             println(s"Unknown instruction $x")
         }

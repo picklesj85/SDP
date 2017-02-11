@@ -1,4 +1,4 @@
-package sml
+package main.sml
 
 /*
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.

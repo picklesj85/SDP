@@ -1,4 +1,4 @@
-package sml
+package main.sml
 
 /**
   * The machine language interpreter
@@ -31,7 +31,7 @@ case class Machine(labels: Labels, prog: Vector[Instruction]) {
 object Machine {
   def main(args: Array[String]) {
     if (args.length == 0) {
-      println("Machine: args should be sml code file to execute")
+      println("Machine: args should be main.sml code file to execute")
     } else {
       println("SML interpreter - Scala version")
 

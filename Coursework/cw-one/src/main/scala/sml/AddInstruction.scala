@@ -1,4 +1,4 @@
-package sml
+package main.sml
 
 class AddInstruction(label: String, op: String, val result: Int, val op1: Int, val op2: Int)
   extends Instruction(label, op) {

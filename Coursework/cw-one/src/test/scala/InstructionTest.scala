@@ -94,4 +94,31 @@ class InstructionTest extends FunSuite {
     val out = OutInstruction("L1",1)
     out.execute(m)
   }
+
+  // test BnzInstruction
+  test("bnz toString") {
+    assert(BnzInstruction("L1", 1, "L3").toString() == "L1: bnz register 1 instruction L3\n")
+  }
+
+  test("bnz execute should branch") {
+    m.labels.add("L1")
+    m.labels.add("L2")
+    m.labels.add("L3")
+    m.pc = 3
+    m.regs(5) = 10
+    val bnz = BnzInstruction("L3", 5, "L2")
+    bnz.execute(m)
+    assert(m.pc == 1)
+  }
+
+  test("bnz execute should not branch") {
+    m.labels.add("L1")
+    m.labels.add("L2")
+    m.labels.add("L3")
+    m.pc = 3
+    m.regs(5) = 0
+    val bnz = BnzInstruction("L3", 5, "L2")
+    bnz.execute(m)
+    assert(m.pc == 3)
+  }
 }

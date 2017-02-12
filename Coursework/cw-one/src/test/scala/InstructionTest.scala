@@ -6,7 +6,7 @@ class InstructionTest extends FunSuite {
 
   // test AddInstruction
   test("Add toString") {
-    assert(AddInstruction("L1", 1, 2, 3).toString() == "L1: add 2 + 3 to 1")
+    assert(AddInstruction("L1", 1, 2, 3).toString() == "L1: add 2 + 3 to 1\n")
   }
 
   test("add execute 3 different registers") {
@@ -26,7 +26,7 @@ class InstructionTest extends FunSuite {
 
   // test SubInstruction
   test("Sub toString") {
-    assert(SubInstruction("L1", 1, 2, 3).toString() == "L1: sub 2 - 3 to 1")
+    assert(SubInstruction("L1", 1, 2, 3).toString() == "L1: sub 2 - 3 to 1\n")
   }
 
   test("sub execute 3 different registers") {
@@ -42,5 +42,25 @@ class InstructionTest extends FunSuite {
     val sub = SubInstruction("L1", 0, 0, 0)
     sub.execute(m)
     assert(m.regs(0) == 0)
+  }
+  
+  // test MulInstruction
+  test("mul toString") {
+    assert(MulInstruction("L1", 1, 2, 3).toString() == "L1: mul 2 * 3 to 1\n")
+  }
+
+  test("mul execute 3 different registers") {
+    m.regs(1) = 5
+    m.regs(2) = 3
+    val mul = MulInstruction("L1", 3, 1, 2)
+    mul.execute(m)
+    assert(m.regs(3) == 15)
+  }
+
+  test("mul execute with only one register") {
+    m.regs(0) = 2
+    val mul = MulInstruction("L1", 0, 0, 0)
+    mul.execute(m)
+    assert(m.regs(0) == 4)
   }
 }

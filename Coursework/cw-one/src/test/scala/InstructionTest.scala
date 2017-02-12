@@ -43,7 +43,7 @@ class InstructionTest extends FunSuite {
     sub.execute(m)
     assert(m.regs(0) == 0)
   }
-  
+
   // test MulInstruction
   test("mul toString") {
     assert(MulInstruction("L1", 1, 2, 3).toString() == "L1: mul 2 * 3 to 1\n")
@@ -82,5 +82,16 @@ class InstructionTest extends FunSuite {
     val div = DivInstruction("L1", 0, 0, 0)
     div.execute(m)
     assert(m.regs(0) == 1)
+  }
+
+  // test OutInstruction
+  test("out toString") {
+    assert(OutInstruction("L1", 1).toString() == "L1: out 1\n")
+  }
+
+  test("out execute 3 different registers") {
+    m.regs(1) = 15
+    val out = OutInstruction("L1",1)
+    out.execute(m)
   }
 }

@@ -4,9 +4,7 @@ class AddInstruction(label: String, op: String, val result: Int, val op1: Int, v
   extends Instruction(label, op) {
 
   override def execute(m: Machine) {
-    val value1 = m.regs(op1)
-    val value2 = m.regs(op2)
-    m.regs(result) = value1 + value2
+    super.execute(m, result, op1, op2, _ + _)
   }
 
   override def toString(): String = {

@@ -1,4 +1,4 @@
-import org.scalatest.{BeforeAndAfter, FunSuite}
+import org.scalatest.FunSuite
 import main.sml._
 
 class InstructionTest extends FunSuite {

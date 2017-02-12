@@ -63,4 +63,24 @@ class InstructionTest extends FunSuite {
     mul.execute(m)
     assert(m.regs(0) == 4)
   }
+
+  // test DivInstruction
+  test("div toString") {
+    assert(DivInstruction("L1", 1, 2, 3).toString() == "L1: div 2 / 3 to 1\n")
+  }
+
+  test("div execute 3 different registers") {
+    m.regs(1) = 15
+    m.regs(2) = 3
+    val div = DivInstruction("L1", 3, 1, 2)
+    div.execute(m)
+    assert(m.regs(3) == 5)
+  }
+
+  test("div execute with only one register") {
+    m.regs(0) = 2
+    val div = DivInstruction("L1", 0, 0, 0)
+    div.execute(m)
+    assert(m.regs(0) == 1)
+  }
 }

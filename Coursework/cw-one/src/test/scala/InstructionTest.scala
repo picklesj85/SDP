@@ -86,7 +86,7 @@ class InstructionTest extends FunSuite {
 
   // test OutInstruction
   test("out toString") {
-    assert(OutInstruction("L1", 1).toString() == "L1: out 1\n")
+    assert(OutInstruction("L1", 1).toString() == "L1: out register 1\n")
   }
 
   test("out execute 3 different registers") {

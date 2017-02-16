@@ -24,23 +24,19 @@ class Translator(fileName: String) {
       val fields = line.split(" ")
       if (fields.length > 0) {
         labels.add(fields(0))
-        fields(1) match {
-          case ADD =>
-            program = program :+ AddInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case LIN =>
-            program = program :+ LinInstruction(fields(0), fields(2).toInt, fields(3).toInt)
-          case SUB =>
-            program = program :+ SubInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case MUL =>
-            program = program :+ MulInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case DIV =>
-            program = program :+ DivInstruction(fields(0), fields(2).toInt, fields(3).toInt, fields(4).toInt)
-          case OUT =>
-            program = program :+ OutInstruction(fields(0), fields(2).toInt)
-          case BNZ =>
-            program = program :+ BnzInstruction(fields(0), fields(2).toInt, fields(3))
-          case x =>
-            println(s"Unknown instruction $x")
+        val fullName = "main.sml." + fields(1).capitalize + "Instruction" //PLAY AROUND WITH PACKAGE NAME GET RID OF PREFIX
+        try {
+          val cl = Class.forName(fullName)
+          val cons = cl.getConstructors()(0)
+          val conargs = fields.map(x => if (x.matches("[0-9]+")) new java.lang.Integer(x) else x )
+          for (elem <- conargs) {println(elem.getClass)}
+          val ins = cons.newInstance(conargs:_*).asInstanceOf[Instruction]
+          program = program :+ ins
+        }
+        catch {
+          case ex: ClassNotFoundException => {
+            ex.printStackTrace()
+          }
         }
       }
     }

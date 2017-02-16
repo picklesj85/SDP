@@ -122,7 +122,10 @@ object Funcs {
     * @param f  : A => B the function to be applied to each element of the input.
     * @return the resulting list from applying f to each element of ls.
     */
-
+  def map[A, B](ls: List[A])(f: A => B): List[B] = ls match {
+    case Nil => List()
+    case h :: t => f(h) :: map(t)(f)
+  }
 
 
   /**
@@ -167,7 +170,8 @@ object Funcs {
     * @return the average value of the largest values in the pairs.
     */
   def maxAverage(ls: List[(Double, Double)]): Double = {
-    val max = ls.map(x => x._1 > x._2)
+    val max = map(ls)(x => if (x._1 > x._2) x._1 else x._2)
+    foldLeft(max, 0.0)(_ + _) / foldLeft(max, 0.0)((a, b) => 1.0 + a)
   }
 
   /**

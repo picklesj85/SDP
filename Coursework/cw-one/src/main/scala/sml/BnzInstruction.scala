@@ -2,13 +2,8 @@ package main.sml
 
 class BnzInstruction(label: String, op: String, val reg: Int, val next: String) extends Instruction(label, op) {
 
-  private final val ZERO = 0
-  private final val ONE = 1
-  private final val TWO = 2
-  private final val THREE = 3
-
   def this(args: Array[String]) {
-    this(args(ZERO), args(ONE), args(TWO).toInt, args(THREE))
+    this(args(0), args(1), args(2).toInt, args(3))
   }
 
   def this(args: String) {
@@ -23,6 +18,6 @@ class BnzInstruction(label: String, op: String, val reg: Int, val next: String) 
     super.toString() + " register " + reg + " instruction " + next + "\n"
 }
 object BnzInstruction {
-  def apply(label: String, reg: Int, next: String) =
+  def apply(label: String, reg: Int, next: String): BnzInstruction =
     new BnzInstruction(label, "bnz", reg, next)
 }

@@ -2,20 +2,15 @@ package main.sml
 
 case class LinInstruction(label: String, opcode: String, register: Int, value: Int) extends Instruction(label, opcode) {
 
-  private final val ZERO = 0
-  private final val ONE = 1
-  private final val TWO = 2
-  private final val THREE = 3
-
   def this(args: Array[String]) {
-    this(args(ZERO), args(ONE), args(TWO).toInt, args(THREE).toInt)
+    this(args(0), args(1), args(2).toInt, args(3).toInt)
   }
 
   def this(args: String) {
     this(args.split(" "))
   }
 
-  override def execute(m: Machine) =
+  override def execute(m: Machine): Unit =
     m.regs(register) = value
 
   override def toString(): String = {
@@ -24,6 +19,6 @@ case class LinInstruction(label: String, opcode: String, register: Int, value: I
 }
 
 object LinInstruction {
-  def apply(label: String, register: Int, value: Int) =
+  def apply(label: String, register: Int, value: Int): LinInstruction =
     new LinInstruction(label, "lin", register, value)
 }

@@ -2,12 +2,8 @@ package main.sml
 
 class OutInstruction(label: String, op: String, val reg: Int) extends Instruction(label, op) {
 
-  private final val ZERO = 0
-  private final val ONE = 1
-  private final val TWO = 2
-
   def this(args: Array[String]) {
-    this(args(ZERO), args(ONE), args(TWO).toInt)
+    this(args(0), args(1), args(2).toInt)
   }
 
   def this(args: String) {
@@ -24,6 +20,6 @@ class OutInstruction(label: String, op: String, val reg: Int) extends Instructio
 }
 
 object OutInstruction {
-  def apply(label: String, reg: Int) =
+  def apply(label: String, reg: Int): OutInstruction =
     new OutInstruction(label, "out", reg)
 }

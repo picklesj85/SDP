@@ -6,5 +6,9 @@ class Counter(num: Int){
 
   def dec(): Counter = { new Counter(count - 1) }
 
+  def inc(num: Int): Counter = { new Counter(count + num) }
+
+  def dec(num: Int): Counter = { new Counter(count - num) }
+
 }
 

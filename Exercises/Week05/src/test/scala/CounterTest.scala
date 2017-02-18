@@ -16,4 +16,16 @@ class CounterTest extends FunSuite with BeforeAndAfter {
   test("dec by one") {
     assert(testCounter.dec.count == 9)
   }
+
+  test("multiple incs and decs by one") {
+    assert(testCounter.inc.dec.inc.inc.count == 12)
+  }
+
+  test("increment by 5") {
+    assert(testCounter.inc(5).count == 15)
+  }
+
+  test("decrement by 5") {
+    assert(testCounter.dec(5).count == 5)
+  }
 }

@@ -27,10 +27,8 @@ class Translator(fileName: String) {
         val fullName = "main.sml." + fields(1).capitalize + "Instruction" //PLAY AROUND WITH PACKAGE NAME GET RID OF PREFIX
         try {
           val cl = Class.forName(fullName)
-          val cons = cl.getConstructors()(0)
-          val conargs = fields.map(x => if (x.matches("[0-9]+")) new java.lang.Integer(x) else x )
-          for (elem <- conargs) {println(elem.getClass)}
-          val ins = cons.newInstance(conargs:_*).asInstanceOf[Instruction]
+          val cons = cl.getConstructor(classOf[String])
+          val ins = cons.newInstance(line).asInstanceOf[Instruction]
           program = program :+ ins
         }
         catch {

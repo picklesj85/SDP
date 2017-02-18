@@ -3,6 +3,14 @@ package main.sml
 class MulInstruction(label: String, op: String, val result: Int, val op1: Int, val op2: Int)
   extends Instruction(label, op) {
 
+  def this(args: Array[String]) {
+    this(args(0), args(1), args(2).toInt, args(3).toInt, args(4).toInt)
+  }
+
+  def this(args: String) {
+    this(args.split(" "))
+  }
+
   override def execute(m: Machine) {
     super.execute(m, result, op1, op2, _ * _)
   }
@@ -13,6 +21,6 @@ class MulInstruction(label: String, op: String, val result: Int, val op1: Int, v
 }
 
 object MulInstruction {
-  def apply(label: String, result: Int, op1: Int, op2: Int) =
+  def apply(label: String, result: Int, op1: Int, op2: Int): MulInstruction =
     new MulInstruction(label, "mul", result, op1, op2)
 }

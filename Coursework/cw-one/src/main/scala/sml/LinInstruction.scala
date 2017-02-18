@@ -2,6 +2,14 @@ package main.sml
 
 case class LinInstruction(label: String, opcode: String, register: Int, value: Int) extends Instruction(label, opcode) {
 
+  def this(args: Array[String]) {
+    this(args(0), args(1), args(2).toInt, args(3).toInt)
+  }
+
+  def this(args: String) {
+    this(args.split(" "))
+  }
+
   override def execute(m: Machine) =
     m.regs(register) = value
 

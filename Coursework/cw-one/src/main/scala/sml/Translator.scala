@@ -17,7 +17,7 @@ class Translator(fileName: String) {
       val fields = line.split(" ")
       if (fields.length > 0) {
         labels.add(fields(0))
-        val fullName = "main.sml." + fields(1).capitalize + "Instruction" //PLAY AROUND WITH PACKAGE NAME GET RID OF PREFIX
+        val fullName = "main.sml." + fields(1).capitalize + "Instruction"
         try {
           val cl = Class.forName(fullName)
           val cons = cl.getConstructor(classOf[String])

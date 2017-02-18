@@ -3,13 +3,13 @@ case class Counter2(num: Int = 0) {
 
   def count(): Int = { num }
 
-  def inc(): Counter2 = { this.copy(count + 1) }
+  def inc(): Counter2 = { copy(count + 1) }
 
-  def dec(): Counter2 = { this.copy(count - 1) }
+  def dec(): Counter2 = { copy(count - 1) }
 
-  def inc(num: Int): Counter2 = { this.copy(count + num) }
+  def inc(num: Int): Counter2 = { copy(count + num) }
 
-  def dec(num: Int): Counter2 = { this.copy(count - num) }
+  def dec(num: Int): Counter2 = { copy(count - num) }
 
-  def adjust(adder: Adder): Counter2 = { this.copy(adder.add(count))}
+  def adjust(adder: Adder): Counter2 = { copy(adder.add(count))}
 }

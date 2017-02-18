@@ -28,4 +28,14 @@ class Counter2Test extends FunSuite with BeforeAndAfter {
   test("decrement by 5") {
     assert(testCounter2.dec(5).count == -5)
   }
+
+  test("adder applied to counter") {
+    val adder = new Adder(10)
+    assert(testCounter2.adjust(adder).count == 10)
+  }
+
+  test("more complicated adder and adjust") {
+    val adder = new Adder(5)
+    assert(testCounter2.inc(10).dec(4).adjust(adder).count == 11)
+  }
 }

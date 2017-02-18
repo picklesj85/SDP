@@ -10,4 +10,6 @@ case class Counter2(num: Int = 0) {
   def inc(num: Int): Counter2 = { this.copy(count + num) }
 
   def dec(num: Int): Counter2 = { this.copy(count - num) }
+
+  def adjust(adder: Adder): Counter2 = { this.copy(adder.add(count))}
 }

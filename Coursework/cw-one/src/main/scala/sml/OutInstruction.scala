@@ -2,8 +2,12 @@ package main.sml
 
 class OutInstruction(label: String, op: String, val reg: Int) extends Instruction(label, op) {
 
+  private final val ZERO = 0
+  private final val ONE = 1
+  private final val TWO = 2
+
   def this(args: Array[String]) {
-    this(args(0), args(1), args(2).toInt)
+    this(args(ZERO), args(ONE), args(TWO).toInt)
   }
 
   def this(args: String) {

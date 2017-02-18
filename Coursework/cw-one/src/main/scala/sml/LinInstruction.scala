@@ -2,8 +2,13 @@ package main.sml
 
 case class LinInstruction(label: String, opcode: String, register: Int, value: Int) extends Instruction(label, opcode) {
 
+  private final val ZERO = 0
+  private final val ONE = 1
+  private final val TWO = 2
+  private final val THREE = 3
+
   def this(args: Array[String]) {
-    this(args(0), args(1), args(2).toInt, args(3).toInt)
+    this(args(ZERO), args(ONE), args(TWO).toInt, args(THREE).toInt)
   }
 
   def this(args: String) {

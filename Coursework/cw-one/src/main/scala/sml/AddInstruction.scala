@@ -3,8 +3,14 @@ package main.sml
 class AddInstruction(label: String, op: String, val result: Int, val op1: Int, val op2: Int)
   extends Instruction(label, op) {
 
+  private final val ZERO = 0
+  private final val ONE = 1
+  private final val TWO = 2
+  private final val THREE = 3
+  private final val FOUR = 4
+
   def this(args: Array[String]) {
-    this(args(0), args(1), args(2).toInt, args(3).toInt, args(4).toInt)
+    this(args(ZERO), args(ONE), args(TWO).toInt, args(THREE).toInt, args(FOUR).toInt)
   }
 
   def this(args: String) {

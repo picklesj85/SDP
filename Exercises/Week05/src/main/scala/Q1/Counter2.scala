@@ -1,4 +1,8 @@
+package Q1
 
+/**
+  * Created by James Pickles on 19/02/2017.
+  */
 case class Counter2(num: Int = 0) {
 
   def count(): Int = { num }

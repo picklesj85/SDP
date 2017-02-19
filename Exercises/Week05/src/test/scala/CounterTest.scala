@@ -1,3 +1,4 @@
+import Q1.Counter
 import org.scalatest.FunSuite
 import org.scalatest.BeforeAndAfter
 

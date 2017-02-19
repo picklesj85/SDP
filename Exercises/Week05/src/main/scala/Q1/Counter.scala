@@ -1,3 +1,5 @@
+package Q1
+
 class Counter(num: Int){
 
   def count(): Int = { num }

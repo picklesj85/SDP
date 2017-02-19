@@ -1,5 +1,5 @@
 import org.scalatest.FunSuite
-import main.sml._
+import sml._
 
 class InstructionTest extends FunSuite {
   val m = new Machine(new Labels, Vector())

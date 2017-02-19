@@ -1,4 +1,4 @@
-package main.sml
+package sml
 
 abstract class Instruction(label: String, opcode: String) {
 

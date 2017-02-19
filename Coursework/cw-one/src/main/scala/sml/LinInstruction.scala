@@ -1,4 +1,4 @@
-package main.sml
+package sml
 
 case class LinInstruction(label: String, opcode: String, register: Int, value: Int) extends Instruction(label, opcode) {
 

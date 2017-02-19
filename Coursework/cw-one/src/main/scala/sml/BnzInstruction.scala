@@ -1,4 +1,4 @@
-package main.sml
+package sml
 
 class BnzInstruction(label: String, op: String, val reg: Int, val next: String) extends Instruction(label, op) {
 

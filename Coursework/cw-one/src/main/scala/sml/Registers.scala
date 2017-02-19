@@ -1,4 +1,4 @@
-package main.sml
+package sml
 
 /**
   * This class ....

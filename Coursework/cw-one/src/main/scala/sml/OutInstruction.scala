@@ -1,4 +1,4 @@
-package main.sml
+package sml
 
 class OutInstruction(label: String, op: String, val reg: Int) extends Instruction(label, op) {
 

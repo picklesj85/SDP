@@ -1,9 +1,10 @@
 package Q2
 
-class Person(firstName: String, lastName: String) {
+case class Person(firstName: String, lastName: String) {
 
-  def getFirstName = firstName
-  def getLastName = lastName
+//  getters not needed in case class
+//  def getFirstName = firstName
+//  def getLastName = lastName
 
 }
 object Person {

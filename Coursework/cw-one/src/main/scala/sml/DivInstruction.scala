@@ -3,14 +3,6 @@ package main.sml
 class DivInstruction(label: String, op: String, val result: Int, val op1: Int, val op2: Int)
   extends Instruction(label, op) {
 
-  def this(args: Array[String]) {
-    this(args(0), args(1), args(2).toInt, args(3).toInt, args(4).toInt)
-  }
-
-  def this(args: String) {
-    this(args.split(" "))
-  }
-
   override def execute(m: Machine) {
     super.execute(m, result, op1, op2, _ / _)
   }

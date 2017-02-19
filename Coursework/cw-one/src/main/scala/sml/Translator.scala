@@ -20,8 +20,9 @@ class Translator(fileName: String) {
         val fullName = "main.sml." + fields(1).capitalize + "Instruction"
         try {
           val cl = Class.forName(fullName)
-          val cons = cl.getConstructor(classOf[String])
-          val ins = cons.newInstance(line).asInstanceOf[Instruction]
+          val constructor = cl.getConstructors()(0)
+          val conArgs = fields.map(x => if (x.matches("[0-9]+")) new java.lang.Integer(x) else x)
+          val ins = constructor.newInstance(conArgs:_*).asInstanceOf[Instruction]
           program = program :+ ins
         }
         catch {

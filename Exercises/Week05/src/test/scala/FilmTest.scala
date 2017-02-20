@@ -77,4 +77,27 @@ class FilmTest extends FunSuite {
     assert(copy != film)
   }
 
+  test("director apply method") {
+    val d = Director("Steven", "Spielberg", 1950)
+    assert(d.getYearOfBirth() == 1950)
+    assert(d.name == "Steven Spielberg")
+  }
+
+  test("older") {
+    val d = Director("Martin", "Scorecese", 1943)
+    val d2 = Director("Alfred", "Hitchcock", 1914)
+    assert(Director.older(d, d2) == d2)
+    assert(Director.older(sergioLeone, d) == sergioLeone)
+  }
+
+  test("highestRating") {
+    val f = Film("Star Wars", 2016, 8.0, new Director("JJ", "Abrams", 1979))
+    assert(Film.highestRating(film, f) == 8.0)
+  }
+
+  test("oldest director at the time") {
+    val f = Film("Star Wars", 2016, 8.0, new Director("JJ", "Abrams", 1979))
+    assert(Film.oldestDirectorAtTheTime(film, f) == sergioLeone)
+  }
+
 }

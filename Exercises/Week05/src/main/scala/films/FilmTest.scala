@@ -21,8 +21,8 @@ object FilmTest extends App {
   val huntForRedOctober = new Film("The Hunt for Red October", 1990, 7.6, mcTiernan)
   val thomasCrownAffair = new Film("The Thomas Crown Affair", 1999, 6.8, mcTiernan)
 
-  eastwood.yearOfBirth // should be 1930
-  dieHard.director.name // should be "John McTiernan"
+//  eastwood.yearOfBirth // should be 1930
+//  dieHard.director.name // should be "John McTiernan"
   invictus.isDirectedBy(nolan) // should be false
 
 }

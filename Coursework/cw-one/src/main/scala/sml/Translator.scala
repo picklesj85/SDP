@@ -20,7 +20,11 @@ class Translator(fileName: String) {
         try {
           val cl = Class.forName("sml." + fields(1).capitalize + "Instruction")
           val constructor = cl.getConstructors()(0)
-          val conArgs = fields.map(x => if (x.matches("[0-9]+")) new java.lang.Integer(x) else x)
+          val labelAndOpcode = fields.take(2) // label and opcode will always be first two.
+          // now for the operands check if they are a number in which case box as an Integer,
+          // otherwise keep as a string. We don't know how many there will be so use drop.
+          val operands = fields.drop(2).map(x => if (x.matches("[0-9]+")) new Integer(x) else x)
+          val conArgs = labelAndOpcode ++ operands
           val ins = constructor.newInstance(conArgs:_*).asInstanceOf[Instruction]
           program = program :+ ins
         }

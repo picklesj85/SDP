@@ -12,9 +12,9 @@ class XpayToPayDAdapter(xpay: Xpay) extends PayD {
   override def getCardExpMonthDate: String = xpay.getCardExpMonth + "/" + xpay.getCardExpYear
 
   override def setCardExpMonthDate(cardExpMonthDate: String): Unit = {
-    val (month, year) = cardExpMonthDate.split("/")
-    xpay.setCardExpMonth(month)
-    xpay.setCardExpYear(year)
+    val date = cardExpMonthDate.split("/")
+    xpay.setCardExpMonth(date(0))
+    xpay.setCardExpYear(date(1))
   }
 
   override def getCVVNo: Integer = xpay.getCardCVVNo.toInt

@@ -14,7 +14,7 @@ class CommentaryObject(var subscribers: ListBuffer[Observer], val title: String)
 
   def unSubscribeObserver(observer: Observer) = {
     subscribers -= observer
-    println(observer.getMsg + " unsubscribed.")
+    println(observer + " unsubscribed.")
   }
 
   def notifyObservers() =  {

@@ -4,6 +4,7 @@ import java.io.ObjectStreamException;
 import java.io.Serializable;
 
 public class SingletonProtected implements Serializable {
+
     private static final long serialVersionUID = -1093810940935189395L;
     private static SingletonProtected sc = new SingletonProtected();
 

@@ -1,0 +1,7 @@
+a) The strategy pattern is the encapsulation of different algorithms that differ in their behaviour but solve the same
+problem. The algorithms can be used interchangeably depending on the context. This allows the specific implementation
+to be chosen at run time and can vary independently from the clients that use it - each different strategy uses the
+same interface decoupling the implementation from the clients.
+
+b) The strategy pattern should be used when there are different ways to perform the same task and you do not know
+in advance which way will be used. So the specific strategy can be chosen at runtime.

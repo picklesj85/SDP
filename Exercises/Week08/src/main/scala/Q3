@@ -1,0 +1,4 @@
+It is appropriate to use the abstract factory pattern when you have a family of products that have a common theme but
+you do not wish to specify the concrete types to the client. The abstract factory provides an abstract pointer to the
+factory that will create the concrete object. This separates client code from object creation as they are only
+aware of the abstract type, thus meaning less modification to client code to add new concrete types.

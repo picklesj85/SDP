@@ -1,6 +1,6 @@
 package strategy
 
-// TODO
+
 
 case class TextEditor(formatter: TextFormatter) {
 

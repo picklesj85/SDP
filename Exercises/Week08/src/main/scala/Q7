@@ -1,0 +1,4 @@
+a) The facade pattern provides a simple interface to a complex underlying body of code. This makes the code easier to
+use while also reducing dependencies on the inner workings of the code.
+
+b) You would use the facade pattern when an easier or simplified interface to the underlying code structure is required.

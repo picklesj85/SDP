@@ -1,0 +1,5 @@
+When an object is complex and can have many different composite parts this can lead to exponential increase of possible
+constructors. Rather than try and deal with all possible combinations of the composition within the constructors, you
+can take a more modular approach and use another 'builder' class that specifies which parts are to be added step by
+step and then returns the constructed object as a whole. This allows different modules to be added without increasing
+complexity oin the constructor of the object.

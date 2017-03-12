@@ -1,0 +1,5 @@
+The bridge pattern creates two layers of abstraction and so allows the concrete classes to vary independently
+from the abstractions. A succinct example of this is different coloured shapes. Rather than have an abstract class
+'Shape' and then multiple different classes extending this with different colours (e.g. 'RedCircle', 'GreenCircle',
+'RedSquare', 'GreenSquare' etc) it makes sense to also have an abstract class colour and use composition to allow
+for any combination of shape and colour - thus the concrete classes can vary independently.

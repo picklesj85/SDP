@@ -15,8 +15,6 @@ case class HtmlElement(s: String) extends HtmlTag(s) {
   }
 
   override def generateHtml: Unit = {
-    print(startTag)
-    print(tagBody)
-    println(endTag)
+    println(startTag + tagBody + endTag)
   }
 }

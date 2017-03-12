@@ -1,0 +1,11 @@
+a) The composite pattern treats groups of objects in the same way as an individual object. It thus composes objects
+into tree structures and client code does not need to distinguish between groups of objects or a single instance.
+
+b) This pattern should be used when you find that there is a part-whole hierarchy of objects and a client needs to deal
+with objects uniformly regardles whether it is a group (branch) or single instance (leaf).
+
+c) The four participants are:
+    > "Component" - This is the interface/abstraction
+    > "Composite" - This is a group of components so stores children
+    > "Leafs" - These are objects that have no children so single instances of the component
+    > "Client" - Client uses the component interface.

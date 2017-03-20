@@ -14,7 +14,7 @@ case class AudioFileHandler(s: String) extends Handler {
     } else {
       next match {
         case Some(h) => println(s + " forwards request to " + h.getHandlerName())
-          h.process(file)
+                        h.process(file)
 
         case None => println("File not supported")
       }

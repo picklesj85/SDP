@@ -1,10 +1,12 @@
 package bc
 
 import org.scalatest.FunSuite
-import org.scalatest.mockito.MockitoSugar
 import vm.VirtualMachine
 
+
 class ByteCodeTests extends FunSuite with ByteCodeValues {
+
+  val m = new MockVM(Vector(2, 4))
 
   test("iconst code") {
     val iconst = new Iconst(5)
@@ -65,4 +67,49 @@ class ByteCodeTests extends FunSuite with ByteCodeValues {
     val print = new Print
     assert(print.code == bytecode("print"))
   }
+
+  test("iconst execute") {
+    val vm = new Iconst(5).execute(m)
+    assert(vm.state == Vector(2, 4, 5))
+  }
+
+  test("iadd execute") {
+    val vm = new Iadd().execute(m)
+    assert(vm.state == Vector(6))
+  }
+
+  test("isub execute") {
+    val vm = new Isub().execute(m)
+    assert(vm.state == Vector(2))
+  }
+
+  test("imul execute") {
+    val vm = new Imul().execute(m)
+    assert(vm.state == Vector(8))
+  }
+
+  test("idiv execute"){} // TODO
+  test("idiv divide by 0"){} // TODO
+  test("irem execute"){} // TODO
+  test("irem div by 0"){} // TODO
+  test("ineg execute") {}// TODO
+  test("iinc execute") {}// TODO
+  test("idec execute") {}// TODO
+  test("iswap execute"){} // TODO
+  test("idup execute") {}// TODO
+  test("iprint execute") {}// TODO
+
+}
+
+class MockVM(stack: Vector[Int]) extends VirtualMachine {
+
+  override def execute(bc: Vector[ByteCode]): VirtualMachine = ???
+
+  override def executeOne(bc: Vector[ByteCode]): (Vector[ByteCode], VirtualMachine) = ???
+
+  override def push(value: Int): VirtualMachine = new MockVM(stack :+ value)
+
+  override def pop(): (Int, VirtualMachine) = (stack.last, new MockVM(stack.init))
+
+  override def state: Vector[Int] = stack
 }

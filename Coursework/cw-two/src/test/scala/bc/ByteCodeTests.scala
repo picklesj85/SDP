@@ -35,4 +35,34 @@ class ByteCodeTests extends FunSuite with ByteCodeValues {
     val irem = new Irem
     assert(irem.code == bytecode("irem"))
   }
+
+  test("ineg code") {
+    val ineg = new Ineg
+    assert(ineg.code == bytecode("ineg"))
+  }
+
+  test("iinc code") {
+    val iinc = new Iinc
+    assert(iinc.code == bytecode("iinc"))
+  }
+
+  test("idec code") {
+    val idec = new Idec
+    assert(idec.code == bytecode("idec"))
+  }
+
+  test("iswap code") {
+    val iswap = new Iswap
+    assert(iswap.code == bytecode("iswap"))
+  }
+
+  test("idup code") {
+    val idup = new Idup
+    assert(idup.code == bytecode("idup"))
+  }
+
+  test("print code") {
+    val print = new Print
+    assert(print.code == bytecode("print"))
+  }
 }

@@ -1,6 +1,6 @@
 package bc
 
-class ByteCodeFactoryImpl extends ByteCodeFactory {
+object ByteCodeFactoryImpl extends ByteCodeFactory {
 
   override def make(byte: Byte, args: Int*): ByteCode = byte match {
     case 1 => new Iconst(args.head)

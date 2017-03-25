@@ -7,7 +7,7 @@ import vm.VirtualMachine
 class ByteCodeTests extends FunSuite with ByteCodeValues {
 
   val m = new MockVM(Vector(2, 4))
-  val bcf = new ByteCodeFactoryImpl
+  val bcf = ByteCodeFactoryImpl
   val bcp = new ByteCodeParserImpl(bcf)
 
   test("iconst code") {

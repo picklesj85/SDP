@@ -8,6 +8,7 @@ class ByteCodeTests extends FunSuite with ByteCodeValues {
 
   val m = new MockVM(Vector(2, 4))
   val bcf = new ByteCodeFactoryImpl
+  val bcp = new ByteCodeParserImpl(bcf)
 
   test("iconst code") {
     val iconst = new Iconst(5)
@@ -163,6 +164,45 @@ class ByteCodeTests extends FunSuite with ByteCodeValues {
       bcf.make(99)
     }
   }
+
+  test("[2] byte code parser should parse a single bytecode") {
+    val code = Vector(bytecode("iadd"))
+    val bc = bcp.parse(code)
+    assert(bc.length == 1, "did not parse one bytecode")
+    assert(bc(0).code == bytecode("iadd"), "did not have the correct code")
+  }
+
+  test("[5] byte code parser should parse a sequence of bytecode") {
+    val code = Vector(bytecode("iconst"), 4.toByte, bytecode("iconst"), 5.toByte, bytecode("iadd"))
+    val bc = bcp.parse(code)
+    assert(bc.length == 3, "did not parse four bytecodes")
+    assert(bc(0).code == bytecode("iconst"))
+    assert(bc(1).code == bytecode("iconst"))
+    assert(bc(2).code == bytecode("iadd"))
+  }
+
+  test("sequence of bytecode including every type of bytecode") {
+    val code = Vector(bytecode("iconst"), 6.toByte, bytecode("iadd"), bytecode("isub"), bytecode("imul"),
+      bytecode("idiv"), bytecode("irem"), bytecode("iconst"), 3.toByte, bytecode("ineg"), bytecode("iinc"),
+      bytecode("idec"), bytecode("iswap"),bytecode("iconst"), 7.toByte, bytecode("idup"), bytecode("print"))
+    val bc = bcp.parse(code)
+    assert(bc.length == 14)
+    assert(bc(0).code == bytecode("iconst"))
+    assert(bc(1).code == bytecode("iadd"))
+    assert(bc(2).code == bytecode("isub"))
+    assert(bc(3).code == bytecode("imul"))
+    assert(bc(4).code == bytecode("idiv"))
+    assert(bc(5).code == bytecode("irem"))
+    assert(bc(6).code == bytecode("iconst"))
+    assert(bc(7).code == bytecode("ineg"))
+    assert(bc(8).code == bytecode("iinc"))
+    assert(bc(9).code == bytecode("idec"))
+    assert(bc(10).code == bytecode("iswap"))
+    assert(bc(11).code == bytecode("iconst"))
+    assert(bc(12).code == bytecode("idup"))
+    assert(bc(13).code == bytecode("print"))
+  }
+
 }
 
 

@@ -88,17 +88,62 @@ class ByteCodeTests extends FunSuite with ByteCodeValues {
     assert(vm.state == Vector(8))
   }
 
-  test("idiv execute"){} // TODO
-  test("idiv divide by 0"){} // TODO
-  test("irem execute"){} // TODO
-  test("irem div by 0"){} // TODO
-  test("ineg execute") {}// TODO
-  test("iinc execute") {}// TODO
-  test("idec execute") {}// TODO
-  test("iswap execute"){} // TODO
-  test("idup execute") {}// TODO
-  test("iprint execute") {}// TODO
+  test("idiv execute"){
+    val vm = new Idiv().execute(m)
+    assert(vm.state == Vector(2))
+  }
 
+  test("idiv divide by 0"){
+    intercept[ArithmeticException] {
+      val vm1 = m.push(0).push(5)
+      val vm2 = new Idiv().execute(vm1)
+    }
+  }
+
+  test("irem execute"){
+    val vm1 = m.push(3).push(5)
+    val vm2 = new Irem().execute(m)
+    val vm3 = new Irem().execute(vm1)
+    assert(vm2.state == Vector(0))
+    assert(vm3.state == Vector(2, 4, 2))
+  }
+
+  test("irem div by 0"){
+    intercept[ArithmeticException] {
+      val vm1 = m.push(0).push(3)
+      val vm2 = new Irem().execute(vm1)
+    }
+  }
+
+  test("ineg execute") {
+    val vm = new Ineg().execute(m)
+    assert(vm.state == Vector(2, -4))
+  }
+
+  test("iinc execute") {
+    val vm = new Iinc().execute(m)
+    assert(vm.state == Vector(2, 5))
+  }
+
+  test("idec execute") {
+    val vm = new Idec().execute(m)
+    assert(vm.state == Vector(2, 3))
+  }
+
+  test("iswap execute"){
+    val vm = new Iswap().execute(m)
+    assert(vm.state == Vector(4, 2))
+  }
+
+  test("idup execute") {
+    val vm = new Idup().execute(m)
+    assert(vm.state == Vector(2, 4, 4))
+  }
+
+  test("iprint execute") {
+    val vm = new Print().execute(m)
+    assert(vm.state == Vector(2))
+  }
 }
 
 class MockVM(stack: Vector[Int]) extends VirtualMachine {

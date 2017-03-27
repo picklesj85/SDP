@@ -3,17 +3,11 @@ package command
 class EmailJob extends Job {
 
   private var email: Email = _
-  private var id: Int = _
 
-  def setEmail(email: Email) = {
-    this.email = email
-    EmailJob.id += 1
-    id = EmailJob.id
-    println("Job ID: " + id + " executing email jobs")
+  def setEmail(email: Email): Unit = this.email = email
+
+  override def run(): Unit = {
+    println("Job ID: " + Thread.currentThread().getId + " executing email jobs")
+    email.sendEmail()
   }
-
-  override def run: Unit = email.sendEmail()
-}
-object EmailJob {
-  var id = 0
 }

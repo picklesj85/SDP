@@ -5,7 +5,7 @@ import scala.io.Source
 class ProgramParserImpl extends ProgramParser {
 
   private val argInstructions = List("iconst")
-  private val noargInstructions = List("iadd","isub","imul","idiv","irem","ineg","idec","idup","iswap","print")
+  private val noargInstructions = List("iadd","isub","imul","idiv","irem","ineg","iinc","idec","idup","iswap","print")
 
   private def parseArgs(a: List[String]): Vector[Int] = a match {
     case Nil => Vector.empty[Int]

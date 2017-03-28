@@ -4,6 +4,7 @@ import scala.io.Source
 
 class ProgramParserImpl extends ProgramParser {
 
+  // Details of instructions that are and aren't expected to have arguments
   private val argInstructions = List("iconst")
   private val noargInstructions = List("iadd","isub","imul","idiv","irem","ineg","iinc","idec","idup","iswap","print")
 

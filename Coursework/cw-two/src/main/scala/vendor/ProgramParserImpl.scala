@@ -1,5 +1,7 @@
 package vendor
 
+import scala.io.Source
+
 class ProgramParserImpl extends ProgramParser {
 
   private val argInstructions = List("iconst")
@@ -34,8 +36,16 @@ class ProgramParserImpl extends ProgramParser {
     }
   }
 
-  def parse(file: String): InstructionList = ???
+  private def parseLines(s: List[String]): InstructionList = s match {
+    case Nil => Vector.empty[Instruction]
+    case h :: t => Vector(parseLine(h).get) ++ parseLines(t)
+  }
 
-  def parseString(string: String): InstructionList = ???
+  def parse(file: String): InstructionList = {
+    parseLines(Source.fromFile(file).getLines().toList)
+  }
 
+  def parseString(string: String): InstructionList = {
+    parseLines(string.split("\\n").toList)
+  }
 }

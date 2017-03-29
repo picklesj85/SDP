@@ -42,17 +42,17 @@ class VirtualMachineTests extends FunSuite {
 
   test("push one on to stack") {
     val vm1 = vm.push(8)
-    assert(vm1.state == Vector(2, 4, 6, 8))
+    assert(vm1.state == Vector(8, 2, 4, 6))
   }
 
   test("push a few onto stack") {
     val vm1 = vm.push(1).push(2).push(3)
-    assert(vm1.state == Vector(2, 4, 6, 1, 2, 3))
+    assert(vm1.state == Vector(3, 2, 1, 2, 4, 6))
   }
 
   test("push and pop") {
     val vm1 = vm.pop()._2.push(3).push(4).pop()._2.push(7)
-    assert(vm1.state == Vector(2, 4, 3, 7))
+    assert(vm1.state == Vector(7, 3, 4, 6))
   }
 
 }

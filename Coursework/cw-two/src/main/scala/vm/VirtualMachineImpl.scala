@@ -34,7 +34,7 @@ class VirtualMachineImpl(stack: Vector[Int]) extends VirtualMachine {
     * @param value the integer to push
     * @return a new virtual machine with the integer `value` pushed
     */
-  override def push(value: Int): VirtualMachine = ???
+  override def push(value: Int): VirtualMachine = new VirtualMachineImpl(value +: stack)
 
   /**
     * Pops an integer value off of the virtual machine stack.

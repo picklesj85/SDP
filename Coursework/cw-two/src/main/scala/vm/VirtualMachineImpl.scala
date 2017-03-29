@@ -1,7 +1,7 @@
 package vm
 import bc.ByteCode
 
-class VirtualMachineImpl extends VirtualMachine {
+class VirtualMachineImpl(stack: Vector[Int]) extends VirtualMachine {
   /**
     * Executes a vector of bytecodes.
     *
@@ -51,5 +51,5 @@ class VirtualMachineImpl extends VirtualMachine {
     *
     * @return the state of the stack
     */
-  override def state: Vector[Int] = ???
+  override def state: Vector[Int] = stack
 }

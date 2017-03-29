@@ -1,20 +1,20 @@
 package bc
 
-object ByteCodeFactoryImpl extends ByteCodeFactory {
+object ByteCodeFactoryImpl extends ByteCodeFactory with ByteCodeValues {
 
-  override def make(byte: Byte, args: Int*): ByteCode = byte match {
-    case 1 => new Iconst(args.head)
-    case 2 => new Iadd
-    case 3 => new Isub
-    case 4 => new Imul
-    case 5 => new Idiv
-    case 6 => new Irem
-    case 7 => new Ineg
-    case 8 => new Iinc
-    case 9 => new Idec
-    case 10 => new Idup
-    case 11 => new Iswap
-    case 12 => new Print
-    case _ => throw new InvalidBytecodeException("Bytecode value unknown")
+  override def make(byte: Byte, args: Int*): ByteCode = {
+    val reversedByteValues: Map[Byte, String] = bytecode.map(_.swap)
+    if (reversedByteValues.contains(byte)) {
+      val cl = Class.forName("bc." + reversedByteValues(byte).capitalize)
+      val constructor = cl.getConstructors()(0)
+      if (args.nonEmpty) {
+        val conArgs = args.map(x => new Integer(x))
+        constructor.newInstance(conArgs:_*).asInstanceOf[ByteCode]
+      } else {
+        constructor.newInstance().asInstanceOf[ByteCode]
+      }
+    } else {
+      throw new InvalidBytecodeException("Bytecode value unknown")
+    }
   }
 }

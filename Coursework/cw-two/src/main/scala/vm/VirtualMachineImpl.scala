@@ -28,20 +28,10 @@ class VirtualMachineImpl(stack: Vector[Int]) extends VirtualMachine {
     */
   override def executeOne(bc: Vector[ByteCode]): (Vector[ByteCode], VirtualMachine) = ???
 
-  /**
-    * Pushes an integer value onto the virtual machine stack.
-    *
-    * @param value the integer to push
-    * @return a new virtual machine with the integer `value` pushed
-    */
+
   override def push(value: Int): VirtualMachine = new VirtualMachineImpl(value +: stack)
 
-  /**
-    * Pops an integer value off of the virtual machine stack.
-    *
-    * @return (i, vm), where i is the integer popped and vm is the
-    *         new virtual machine
-    */
+
   override def pop(): (Int, VirtualMachine) = {
 
     if (stack.isEmpty) throw new MachineUnderflowException("Stack is empty")
@@ -49,13 +39,7 @@ class VirtualMachineImpl(stack: Vector[Int]) extends VirtualMachine {
     (stack.head, new VirtualMachineImpl(stack.tail))
   }
 
-  /**
-    * Returns the state of the virtual machine stack.
-    *
-    * The value at index 0 is the value on the top of the stack.
-    *
-    * @return the state of the stack
-    */
+
   override def state: Vector[Int] = stack
 
 

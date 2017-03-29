@@ -17,7 +17,7 @@ class VirtualMachineTests extends FunSuite {
 
   test("Pop underflow exception") {
     intercept[MachineUnderflowException] {
-      vm.pop()._2.pop()._2.pop()
+      vm.pop()._2.pop()._2.pop()._2.pop()
     }
   }
 

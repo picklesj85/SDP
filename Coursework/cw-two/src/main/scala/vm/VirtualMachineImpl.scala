@@ -42,7 +42,12 @@ class VirtualMachineImpl(stack: Vector[Int]) extends VirtualMachine {
     * @return (i, vm), where i is the integer popped and vm is the
     *         new virtual machine
     */
-  override def pop(): (Int, VirtualMachine) = ???
+  override def pop(): (Int, VirtualMachine) = {
+
+    if (stack.isEmpty) throw new MachineUnderflowException("Stack is empty")
+
+    (stack.head, new VirtualMachineImpl(stack.tail))
+  }
 
   /**
     * Returns the state of the virtual machine stack.
@@ -52,4 +57,6 @@ class VirtualMachineImpl(stack: Vector[Int]) extends VirtualMachine {
     * @return the state of the stack
     */
   override def state: Vector[Int] = stack
+
+
 }

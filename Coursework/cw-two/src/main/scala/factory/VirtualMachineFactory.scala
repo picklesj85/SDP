@@ -23,5 +23,5 @@ object VirtualMachineFactory {
   def virtualMachineParser: VirtualMachineParser = ???
 
   // TODO
-  def virtualMachine: VirtualMachine = ???
+  def virtualMachine: VirtualMachine = new VirtualMachineImpl(Vector())
 }

@@ -132,7 +132,13 @@ class VirtualMachineTests extends FunSuite {
     }
   }
 
-  test("ex one with factory") {} //TO DO
+  test("ex one with factory") {
+    val iconst = VirtualMachineFactory.byteCodeFactory.make(1, 5)
+    val vm2 = vm.executeOne(Vector(iconst))
+    assert(vm2._2.state == Vector(5, 2, 4, 6))
+    assert(vm2._1.isEmpty)
+  }
+
 
 
 

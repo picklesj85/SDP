@@ -2,17 +2,12 @@ package vm
 import bc.ByteCode
 
 class VirtualMachineImpl(stack: Vector[Int]) extends VirtualMachine {
-  /**
-    * Executes a vector of bytecodes.
-    *
-    * Note, that this is an "immutable" object. That is, it
-    * will return a new virtual machine after executing each
-    * of the bytecode objects in the vector.
-    *
-    * @param bc a vector of bytecodes
-    * @return a new virtual machine
-    */
-  override def execute(bc: Vector[ByteCode]): VirtualMachine = ???
+
+  override def execute(bc: Vector[ByteCode]): VirtualMachine = bc.toList match {
+    case Nil => this
+    case _ => val (nextVector, nextVM) = executeOne(bc)
+              nextVM.execute(nextVector)
+  }
 
   override def executeOne(bc: Vector[ByteCode]): (Vector[ByteCode], VirtualMachine) = (bc.tail, bc.head.execute(this))
 

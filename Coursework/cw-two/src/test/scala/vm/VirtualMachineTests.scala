@@ -174,8 +174,8 @@ class VirtualMachineTests extends FunSuite {
   }
 
   test("execute irem") {
-    val vm1 = vm.execute(Vector(new Irem))
-    assert(vm1.state == Vector(0, 6))
+    val vm1 = vm.push(7)execute(Vector(new Irem))
+    assert(vm1.state == Vector(1, 4, 6))
   }
 
   test("execute ineg") {
@@ -210,15 +210,17 @@ class VirtualMachineTests extends FunSuite {
   }
 
   test("divide by 0"){
-    intercept[ArithmeticException]
-    val vm1 = vm.push(0).push(2)
-    vm1.execute(Vector(new Idiv))
+    intercept[ArithmeticException] {
+      val vm1 = vm.push(0).push(2)
+      vm1.execute(Vector(new Idiv))
+    }
   }
 
   test("irem divide by 0") {
-    intercept[ArithmeticException]
-    val vm1 = vm.push(0).push(2)
-    vm1.execute(Vector(new Irem))
+    intercept[ArithmeticException] {
+      val vm1 = vm.push(0).push(2)
+      vm1.execute(Vector(new Irem))
+    }
   }
 
   test("execute underflow") {
@@ -229,17 +231,16 @@ class VirtualMachineTests extends FunSuite {
 
   test("execute multiple iadd") {
     val args = VirtualMachineFactory.byteCodeParser.parse(Vector(2, 2, 12))
-    val vm1 = vm.execute(args)
     print("This should be a 12: ")
+    val vm1 = vm.execute(args)
     assert(vm1.state.isEmpty)
   }
 
   test("execute with every type of instruction") {
-    val args = VirtualMachineFactory.byteCodeParser.parse(Vector(1, 1, 2, 3, 7, 4, 1, 8, 5, 10, 9, 6, 8, 11, 6, 12))
-    val vm1 = vm.execute(args)
+    val args = VirtualMachineFactory.byteCodeParser.parse(Vector(1, 1, 2, 3, 1, 2, 7, 4, 1,
+                                                                 8, 5, 11, 9, 6, 8, 10, 6, 12))
     print("This should be a 0: ")
+    val vm1 = vm.execute(args)
     assert(vm1.state.isEmpty)
   }
-
-
 }

@@ -139,6 +139,13 @@ class VirtualMachineTests extends FunSuite {
     assert(vm2._1.isEmpty)
   }
 
+  test("ex one with factory using byteCodeParser") {
+    val args = VirtualMachineFactory.byteCodeParser.parse(Vector(2, 1, 8, 3))
+    val vm1 = vm.executeOne(args)
+    assert(vm1._2.state == Vector(6, 6))
+    assert(vm1._1.length == 2)
+    assert(vm1._1.head.code == 1)
+  }
 
 
 

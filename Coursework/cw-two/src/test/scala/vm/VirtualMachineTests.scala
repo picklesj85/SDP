@@ -243,4 +243,45 @@ class VirtualMachineTests extends FunSuite {
     val vm1 = vm.execute(args)
     assert(vm1.state.isEmpty)
   }
+
+  test("made with factory") {
+    val args = Vector(VirtualMachineFactory.byteCodeFactory.make(1, 1))
+    val vm1 = VirtualMachineFactory.virtualMachine
+    val (bc2, vm2) = vm1.executeOne(args)
+    assert(vm2.state.head == 1)
+  }
+
+  test("iadd with factory") {
+    val vm1 = VirtualMachineFactory.virtualMachine
+    val args  = VirtualMachineFactory.byteCodeParser.parse(Vector(1, 1, 1, 2, 2))
+    var next = vm1.executeOne(args)
+    assert(next._2.state.head == 1)
+    next = next._2.executeOne(next._1)
+    assert(next._2.state.head == 2)
+    next = next._2.executeOne(next._1)
+    assert(next._2.state.head == 3)
+  }
+
+  test("isub with factory") {
+    val vm1 = VirtualMachineFactory.virtualMachine
+    val args  = VirtualMachineFactory.byteCodeParser.parse(Vector(1, 1, 1, 2, 3))
+    var next = vm1.executeOne(args)
+    assert(next._2.state.head == 1)
+    next = next._2.executeOne(next._1)
+    assert(next._2.state.head == 2)
+    next = next._2.executeOne(next._1)
+    assert(next._2.state.head == 1)
+  }
+
+  test("iswap with factory") {
+    val vm1 = VirtualMachineFactory.virtualMachine
+    val args  = VirtualMachineFactory.byteCodeParser.parse(Vector(1, 1, 1, 2, 11))
+    var next = vm1.executeOne(args)
+    assert(next._2.state.head == 1)
+    next = next._2.executeOne(next._1)
+    assert(next._2.state.head == 2)
+    next = next._2.executeOne(next._1)
+    assert(next._2.state(0) == 1)
+    assert(next._2.state(1) == 2)
+  }
 }

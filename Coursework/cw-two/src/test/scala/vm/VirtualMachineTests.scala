@@ -92,7 +92,7 @@ class VirtualMachineTests extends FunSuite {
 
   test("ex one irem") {
     val vm1 = vm.push(5).executeOne(Vector(new Irem))
-    assert(vm1._2.state == Vector(1, 6))
+    assert(vm1._2.state == Vector(1, 4, 6))
   }
 
   test("ex one ineg") {
@@ -121,6 +121,7 @@ class VirtualMachineTests extends FunSuite {
   }
 
   test("ex one print") {
+    print("This should be a 2: ")
     val vm1 = vm.executeOne(Vector(new Print))
     assert(vm1._2.state == Vector(4, 6))
   }
@@ -147,6 +148,98 @@ class VirtualMachineTests extends FunSuite {
     assert(vm1._1.head.code == 1)
   }
 
+  test("execute iconst") {
+    val vm1 = vm.execute(Vector(new Iconst(1)))
+    assert(vm1.state == Vector(1, 2, 4, 6))
+  }
+
+  test("execute isub") {
+    val vm1 = vm.execute(Vector(new Isub))
+    assert(vm1.state == Vector(-2, 6))
+  }
+
+  test("execute iadd") {
+    val vm1 = vm.execute(Vector(new Iadd))
+    assert(vm1.state == Vector(6, 6))
+  }
+
+  test("execute imul") {
+    val vm1 = vm.execute(Vector(new Imul))
+    assert(vm1.state == Vector(8, 6))
+  }
+
+  test("execute idiv") {
+    val vm1 = vm.execute(Vector(new Idiv))
+    assert(vm1.state == Vector(0, 6))
+  }
+
+  test("execute irem") {
+    val vm1 = vm.execute(Vector(new Irem))
+    assert(vm1.state == Vector(0, 6))
+  }
+
+  test("execute ineg") {
+    val vm1 = vm.execute(Vector(new Ineg))
+    assert(vm1.state == Vector(-2, 4, 6))
+  }
+
+  test("execute iinc") {
+    val vm1 = vm.execute(Vector(new Iinc))
+    assert(vm1.state == Vector(3, 4, 6))
+  }
+
+  test("execute idec") {
+    val vm1 = vm.execute(Vector(new Idec))
+    assert(vm1.state == Vector(1, 4, 6))
+  }
+
+  test("execute iswap") {
+    val vm1 = vm.execute(Vector(new Iswap))
+    assert(vm1.state == Vector(4, 2, 6))
+  }
+
+  test("execute idup") {
+    val vm1 = vm.execute(Vector(new Idup))
+    assert(vm1.state == Vector(2, 2, 4, 6))
+  }
+
+  test("execute print") {
+    print("This should be a 2: ")
+    val vm1 = vm.execute(Vector(new Print))
+    assert(vm1.state == Vector(4, 6))
+  }
+
+  test("divide by 0"){
+    intercept[ArithmeticException]
+    val vm1 = vm.push(0).push(2)
+    vm1.execute(Vector(new Idiv))
+  }
+
+  test("irem divide by 0") {
+    intercept[ArithmeticException]
+    val vm1 = vm.push(0).push(2)
+    vm1.execute(Vector(new Irem))
+  }
+
+  test("execute underflow") {
+    intercept[MachineUnderflowException] {
+      vm.execute(Vector(new Iadd, new Iadd, new Iadd))
+    }
+  }
+
+  test("execute multiple iadd") {
+    val args = VirtualMachineFactory.byteCodeParser.parse(Vector(2, 2, 12))
+    val vm1 = vm.execute(args)
+    print("This should be a 12: ")
+    assert(vm1.state.isEmpty)
+  }
+
+  test("execute with every type of instruction") {
+    val args = VirtualMachineFactory.byteCodeParser.parse(Vector(1, 1, 2, 3, 7, 4, 1, 8, 5, 10, 9, 6, 8, 11, 6, 12))
+    val vm1 = vm.execute(args)
+    print("This should be a 0: ")
+    assert(vm1.state.isEmpty)
+  }
 
 
 }

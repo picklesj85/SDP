@@ -23,7 +23,7 @@ class VirtualMachineParserImpl extends VirtualMachineParser with ByteCodeValues 
   def parse(file: String): Vector[ByteCode] = {
     try {
       adapter(vp.parse(file))
-    } catch{
+    } catch {
       case e: vendor.InvalidInstructionFormatException => throw new bc.InvalidBytecodeException(e.getMessage)
     }
   }
@@ -31,7 +31,7 @@ class VirtualMachineParserImpl extends VirtualMachineParser with ByteCodeValues 
   def parseString(str: String): Vector[ByteCode] = {
     try {
       adapter(vp.parseString(str))
-    } catch{
+    } catch {
       case e: vendor.InvalidInstructionFormatException => throw new bc.InvalidBytecodeException(e.getMessage)
     }
   }

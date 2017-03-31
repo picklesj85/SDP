@@ -3,10 +3,10 @@ import bc.ByteCode
 
 class VirtualMachineImpl(stack: Vector[Int]) extends VirtualMachine {
 
-  override def execute(bc: Vector[ByteCode]): VirtualMachine = bc.toList match {
-    case Nil => this
-    case _   => val (nextVector, nextVM) = executeOne(bc)
-                nextVM.execute(nextVector)
+  override def execute(bc: Vector[ByteCode]): VirtualMachine = bc match {
+    case Seq() => this
+    case _     => val (nextVector, nextVM) = executeOne(bc)
+                  nextVM.execute(nextVector)
   }
 
   override def executeOne(bc: Vector[ByteCode]): (Vector[ByteCode], VirtualMachine) = (bc.tail, bc.head.execute(this))

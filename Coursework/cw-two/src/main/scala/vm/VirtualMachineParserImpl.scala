@@ -14,7 +14,7 @@ class VirtualMachineParserImpl extends VirtualMachineParser with ByteCodeValues 
       //
       // Instructions with no arguments are represented as Vector.empty[Int] by
       // VendorProgramParserImpl hence require no special handling here as
-      // Vector(1) + Vector.empty[Int] == Vector(1)
+      // Vector(1) ++ Vector.empty[Int] == Vector(1)
       //
       case h +: t => bcp.parse(bytecode(h.name) +: h.args.map(_.toByte)) ++ adapter(t)
       case _ => Vector.empty[ByteCode]

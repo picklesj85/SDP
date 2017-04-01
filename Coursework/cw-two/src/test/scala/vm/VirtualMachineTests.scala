@@ -3,10 +3,14 @@ package vm
 import org.scalatest.FunSuite
 import bc._
 import factory._
+import vendor.InvalidInstructionFormatException
 
 class VirtualMachineTests extends FunSuite {
 
   val vm = new VirtualMachineImpl(Vector(2, 4, 6))
+  val vmp = VirtualMachineFactory.virtualMachineParser
+  val testVM  = VirtualMachineFactory.virtualMachine
+
 
   test("state returns current stack") {
     assert(vm.state == Vector(2, 4, 6))
@@ -283,5 +287,40 @@ class VirtualMachineTests extends FunSuite {
     next = next._2.executeOne(next._1)
     assert(next._2.state(0) == 1)
     assert(next._2.state(1) == 2)
+  }
+
+  test("program 1") {
+    val args = vmp.parse("programs/p01.vm")
+    print("This should be a 9: ")
+    val vm1 = testVM.execute(args)
+    assert(vm1.state.isEmpty)
+  }
+
+  test("program 2") {
+    intercept[MachineUnderflowException] {
+      val args = vmp.parse("programs/p02-bad-stack.vm")
+      testVM.execute(args)
+    }
+  }
+
+  test("program 3") {
+    intercept[ArithmeticException] {
+      val args = vmp.parse("programs/p03.vm")
+      testVM.execute(args)
+    }
+  }
+
+  test("program 4") {
+    intercept[InvalidBytecodeException] {
+      val args = vmp.parse("programs/p04-bad-program.vm")
+      testVM.execute(args)
+    }
+  }
+
+  test("program 5") {
+    val args = vmp.parse("programs/p05.vm")
+    println("This should be a 21 and a 4:")
+    val vm1 = testVM.execute(args)
+    assert(vm1.state.isEmpty)
   }
 }

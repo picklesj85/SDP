@@ -1,5 +1,7 @@
 package mediator
 
 class Sensor {
-  def checkTemperature(temp: Int): Boolean = ???
+  def checkTemperature(temp: Int): Boolean = {
+    true
+  }
 }

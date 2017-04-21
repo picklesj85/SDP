@@ -1,13 +1,13 @@
 package flyweight
 
-import java.util.HashMap
-import java.util.Map
 
 object PlatformFactory {
 
-  private var map: Map[String, Platform] = ???
+  private var map = Map("JAVA" -> new JavaPlatform, "C" -> new CPlatform, "RUBY" -> new RubyPlatform,
+                        "SCALA" -> new ScalaPlatform)
 
-  def getPlatformInstance(platformType: String): Platform = ???
-  // this method will probably need to be synchronized
+  def getPlatformInstance(platformType: String): Platform = {
+    map(platformType)
+  }
 
 }

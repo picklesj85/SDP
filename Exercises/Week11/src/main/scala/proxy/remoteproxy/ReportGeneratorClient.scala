@@ -3,7 +3,8 @@ package proxy.remoteproxy
 import java.rmi.Naming
 
 object ReportGeneratorClient extends App {
-  // YOUR CODE GOES HERE
+  val generateReport = new ReportGeneratorClient
+  generateReport.generateReport()
 }
 
 class ReportGeneratorClient {

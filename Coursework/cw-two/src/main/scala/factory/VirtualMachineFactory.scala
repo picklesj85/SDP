@@ -4,7 +4,9 @@ import bc.{ByteCodeFactory, ByteCodeFactoryImpl, ByteCodeParser, ByteCodeParserI
 import vendor.{ProgramParser, ProgramParserImpl}
 import vm.{VirtualMachine, VirtualMachineImpl, VirtualMachineParser, VirtualMachineParserImpl}
 
-
+/** A singleton specifying the dependencies between ProgramParser, ByteCodeParser
+  * and VirtualMachineParser implementations for VirtualMachines
+  */
 object VirtualMachineFactory {
 
   def byteCodeFactory: ByteCodeFactory = ByteCodeFactoryImpl

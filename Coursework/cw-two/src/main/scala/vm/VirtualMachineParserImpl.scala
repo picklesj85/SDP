@@ -3,13 +3,11 @@ package vm
 import bc.{ByteCode, ByteCodeFactoryImpl, ByteCodeParserImpl, ByteCodeValues}
 import vendor.{Instruction, ProgramParserImpl}
 
-class VirtualMachineParserImpl extends VirtualMachineParser with ByteCodeValues {
-
-  private val vp = new ProgramParserImpl()
-  private val bcp = new ByteCodeParserImpl(ByteCodeFactoryImpl)
+class VirtualMachineParserImpl(vp: ProgramParserImpl, bcp: ByteCodeParserImpl) extends VirtualMachineParser with ByteCodeValues {
 
   private def adapter(iv: Vector[Instruction]): Vector[ByteCode] = iv match {
-      // Convert our vector of instructions to a vector of bytes and use a
+    // Convert our vector of instructions to a vector of bytes and use a
+
       // ByteCodeParser to convert into the corresponding vector of ByteCodes.
       //
       // Instructions with no arguments are represented as Vector.empty[Int] by

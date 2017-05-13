@@ -1,6 +1,6 @@
 package sml
 
-abstract class Instruction(label: String, opcode: String) {
+abstract case class Instruction(label: String, opcode: String) {
 
   override def toString(): String = label + ": " + opcode
 
